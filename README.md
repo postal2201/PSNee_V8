@@ -4,7 +4,7 @@ The first stealth modchip supporting unlocking BIOS of Japanese versions Sony Pl
 
 ![Logo](images/PSNee_V8_logo.png)
 Developed by **brill** & **postal2201**, based on PSNee V7 open source project.  
-http://emu-land.net/
+- http://www.emu-land.net/forum/index.php/topic,85934.0.html
 
 ## Supported platforms
 PsNee V8 supports the following MCU's:  
