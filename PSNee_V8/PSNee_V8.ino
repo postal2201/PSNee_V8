@@ -1,4 +1,4 @@
-// PSNee V8 - Ultimate PSX unlocker.   /ver. 8.0.0
+// PSNee V8 - Ultimate PSX unlocker.   /ver. 8.0.1
 // Developed by brill & postal2201, based on PSNee V7 open source project.   /Emu-land.net
 
 #define F_CPU 16000000L
@@ -20,6 +20,9 @@
 //------------------------------------------------------------------------------------------------
 //                         Select your console
 //------------------------------------------------------------------------------------------------
+//                              Attention!
+//   If a BIOS checksum is specified, it is more important than the SCPH model number!
+//------------------------------------------------------------------------------------------------	
 
 //#define UC_ALL           // Use for all NTSC-U/C models. No BIOS patching needed.
 //#define PAL_FAT          // Use for all PAL FAT models. No BIOS patching needed.
@@ -29,8 +32,8 @@
 //#define SCPH_7000_9000   // DX - D0, AX - A7. BIOS ver. 4.0j, CRC EC541CD0
 //#define SCPH_5500        // DX - D0, AX - A5. BIOS ver. 3.0j, CRC FF3EEB8C
 //#define SCPH_3500_5000   // DX - D0, AX - A5. BIOS ver. 2.2j, CRC 24FC7E17 | 2.1j, CRC BC190209
-//#define SCPH_3000        // DX - D5, AX - A7, AY - A8. BIOS ver. 1.1j, CRC 3539DEF6
-//#define SCPH_1000        // DX - D5, AX - A7, AY - A8. BIOS ver. 1.0j, CRC 3B601FC8
+//#define SCPH_3000        // DX - D5, for 40-pin BIOS: AX - A6, AY - A7, for 32-pin BIOS: AX - A7, AY - A8. BIOS ver. 1.1j, CRC 3539DEF6
+//#define SCPH_1000        // DX - D5, for 40-pin BIOS: AX - A6, AY - A7, for 32-pin BIOS: AX - A7, AY - A8. BIOS ver. 1.0j, CRC 3B601FC8
 
 //------------------------------------------------------------------------------------------------
 //                         Options
@@ -43,9 +46,9 @@
 //                         Code section
 //------------------------------------------------------------------------------------------------
 
-#include "include/config.h"
-#include "include/settings.h"
-#include "include/patching.h"
+#include "config.h"
+#include "settings.h"
+#include "patching.h"
 
 volatile uint8_t count_isr = 0;
 volatile uint32_t microsec = 0;
@@ -173,17 +176,17 @@ int main()
 	uint8_t scpos = 0;
 	uint16_t highs = 0, lows = 0;
 
-  #if !defined(UC_ALL) && !defined(PAL_FAT) && !defined(SCPH_103) && \
+	#if !defined(UC_ALL) && !defined(PAL_FAT) && !defined(SCPH_103) && \
       !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
       !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
       !defined(SCPH_1000)
-    #error "Not selected cosole. Please uncoment define L21"
-  #elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
+     #error "Cosole not selected! Please uncoment #define with SCPH model number."
+  	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
           defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
           defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
           defined(SCPH_1000))
-    #error "May be selected only one console. Please check define L21"
-  #endif
+     #error "May be selected only one console! Please check #define with SCPH model number."
+  	#endif
  
 	#ifndef AUTOREGION
 	 const char region[3] = {'e', 'a', 'i'};
