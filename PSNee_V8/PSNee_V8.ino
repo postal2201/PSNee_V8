@@ -172,6 +172,18 @@ int main()
 	uint8_t bitpos = 0;
 	uint8_t scpos = 0;
 	uint16_t highs = 0, lows = 0;
+
+  #if !defined(UC_ALL) && !defined(PAL_FAT) && !defined(SCPH_103) && \
+      !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
+      !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
+      !defined(SCPH_1000)
+    #error "Not selected cosole. Please uncoment define L21"
+  #elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
+          defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
+          defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
+          defined(SCPH_1000))
+    #error "May be selected only one console. Please check define L21"
+  #endif
  
 	#ifndef AUTOREGION
 	 const char region[3] = {'e', 'a', 'i'};
