@@ -180,7 +180,7 @@ int main()
       !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
       !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
       !defined(SCPH_1000)
-     #error "Cosole not selected! Please uncoment #define with SCPH model number."
+     #error "Console not selected! Please uncoment #define with SCPH model number."
   	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
           defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
           defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
