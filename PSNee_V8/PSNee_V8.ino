@@ -177,15 +177,15 @@ int main()
 	uint16_t highs = 0, lows = 0;
 
 	#if !defined(UC_ALL) && !defined(PAL_FAT) && !defined(SCPH_103) && \
-      !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
-      !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
-      !defined(SCPH_1000)
-     #error "Console not selected! Please uncoment #define with SCPH model number."
+      	  !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
+	  !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
+      	  !defined(SCPH_1000)
+		#error "Console not selected! Please uncomment #define with SCPH model number."
   	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
           defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
           defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
           defined(SCPH_1000))
-     #error "May be selected only one console! Please check #define with SCPH model number."
+     		#error "May be selected only one console! Please check #define with SCPH model number."
   	#endif
  
 	#ifndef AUTOREGION
