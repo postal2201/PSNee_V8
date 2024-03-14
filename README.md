@@ -1,4 +1,4 @@
-# PSNee V8
+# PSNee V8.1
 
 The first stealth modchip supporting unlocking BIOS of Japanese versions Sony PlayStation 1
 
@@ -6,7 +6,7 @@ The first stealth modchip supporting unlocking BIOS of Japanese versions Sony Pl
 Developed by **brill** & **postal2201**, based on PSNee V7 open source project.  
 - http://www.emu-land.net/forum/index.php/topic,85934.0.html
 
-The MOD_SWITCH feature added by **Victini378**.
+The MOD_SWITCH feature added by **Victini378** and designed in cooperation with **SunAlphiusWu**.
 
 ## Supported platforms
 PsNee V8 supports the following MCU's:  
