@@ -30,7 +30,7 @@ Example of correct setting for ATmega328P:\
 
 ![ArduinoIDE](images/example.png)
 
-After that select the type console - uncoment define in file project(*.ino)
+After that select the type console - uncomment define in file project(*.ino)
 
 ![Console](images/console.png)
 
