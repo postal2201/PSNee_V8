@@ -38,6 +38,9 @@
 #define SW_USE			PORTD |= (1<<5)
 #define SW_CHECK		(PIND & (1<<5))
 
+#define MOD_SW_USE		PORTB |= (1<<2)
+#define MOD_SW_CHECK	(PINB & (1<<2))
+
 #define LED_USE			DDRB |= (1<<5)
 #define LED_ON			PORTB |= (1<<5)
 #define LED_OFF			PORTB &= ~(1<<5)
@@ -51,6 +54,10 @@ void Init()
 
 	#ifdef PATCH_SW
 	 SW_USE;
+	#endif
+	
+	#ifdef MOD_SW
+	 MOD_SW_USE;
 	#endif
 
 	LED_USE;

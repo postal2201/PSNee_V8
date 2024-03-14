@@ -40,15 +40,16 @@
 //------------------------------------------------------------------------------------------------
 
 #define AUTOREGION         // If disable, send all SCEX codes, instead of the code selected model.
-#define PATCH_SW           // Enables hardware support for disabling BIOS patching.
+//#define PATCH_SW         // Enables hardware support for disabling BIOS patching.
+//#define MOD_SW           // Enables hardware support for disabling the entire modchip.         
 
 //------------------------------------------------------------------------------------------------
 //                         Code section
 //------------------------------------------------------------------------------------------------
 
-#include "config.h"
-#include "settings.h"
-#include "patching.h"
+#include "include/config.h"
+#include "include/settings.h"
+#include "include/patching.h"
 
 volatile uint8_t count_isr = 0;
 volatile uint32_t microsec = 0;
@@ -177,22 +178,27 @@ int main()
 	uint16_t highs = 0, lows = 0;
 
 	#if !defined(UC_ALL) && !defined(PAL_FAT) && !defined(SCPH_103) && \
-      !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
-      !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
-      !defined(SCPH_1000)
-     #error "Console not selected! Please uncoment #define with SCPH model number."
-  	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
-          defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
-          defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
-          defined(SCPH_1000))
-     #error "May be selected only one console! Please check #define with SCPH model number."
-  	#endif
+	  !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
+	  !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
+	  !defined(SCPH_1000)
+    	#error "Console not selected! Please uncomment #define with SCPH model number."
+	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
+	  defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
+	  defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
+	  defined(SCPH_1000))
+    	#error "May be selected only one console! Please check #define with SCPH model number."
+	#endif
  
 	#ifndef AUTOREGION
 	 const char region[3] = {'e', 'a', 'i'};
 	#endif
 
 	Init();
+
+	#if defined(MOD_SW)
+	 if (MOD_SW_CHECK == 0)
+		return 0;
+	#endif
 
 	#ifdef LED_USE
 	 LED_ON;
