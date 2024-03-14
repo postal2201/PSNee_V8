@@ -40,7 +40,8 @@
 //------------------------------------------------------------------------------------------------
 
 #define AUTOREGION         // If disable, send all SCEX codes, instead of the code selected model.
-//#define PATCH_SW         // Enables hardware support for disabling BIOS patching.      
+//#define PATCH_SW         // Enables hardware support for disabling BIOS patching.
+//#define MOD_SW           // Enables hardware support for disabling the entire modchip.         
 
 //------------------------------------------------------------------------------------------------
 //                         Code section
@@ -193,6 +194,11 @@ int main()
 	#endif
 
 	Init();
+
+	#if defined(MOD_SW)
+	 if (MOD_SW_CHECK == 0)
+		return 0;
+	#endif
 
 	#ifdef LED_USE
 	 LED_ON;
