@@ -24,7 +24,7 @@
 //   If a BIOS checksum is specified, it is more important than the SCPH model number!
 //------------------------------------------------------------------------------------------------	
 
-//#define UC_ALL           // Use for all NTSC-U/C models. No BIOS patching needed.
+#define UC_ALL           // Use for all NTSC-U/C models. No BIOS patching needed.
 //#define PAL_FAT          // Use for all PAL FAT models. No BIOS patching needed.
 //#define SCPH_103         // No BIOS patching needed.
 //#define SCPH_102         // DX - D0, AX - A7. BIOS ver. 4.4e, CRC 0BAD7EA9 | 4.5e, CRC 76B880E5
@@ -40,15 +40,15 @@
 //------------------------------------------------------------------------------------------------
 
 #define AUTOREGION         // If disable, send all SCEX codes, instead of the code selected model.
-#define PATCH_SW           // Enables hardware support for disabling BIOS patching.
+//#define PATCH_SW         // Enables hardware support for disabling BIOS patching.      
 
 //------------------------------------------------------------------------------------------------
 //                         Code section
 //------------------------------------------------------------------------------------------------
 
-#include "config.h"
-#include "settings.h"
-#include "patching.h"
+#include "include/config.h"
+#include "include/settings.h"
+#include "include/patching.h"
 
 volatile uint8_t count_isr = 0;
 volatile uint32_t microsec = 0;
@@ -177,16 +177,16 @@ int main()
 	uint16_t highs = 0, lows = 0;
 
 	#if !defined(UC_ALL) && !defined(PAL_FAT) && !defined(SCPH_103) && \
-      	  !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
+	  !defined(SCPH_102) && !defined(SCPH_100) && !defined(SCPH_7000_9000) && \
 	  !defined(SCPH_5500) && !defined(SCPH_3500_5000) && !defined(SCPH_3000) && \
-      	  !defined(SCPH_1000)
-		#error "Console not selected! Please uncomment #define with SCPH model number."
-  	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
-          defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
-          defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
-          defined(SCPH_1000))
-     		#error "May be selected only one console! Please check #define with SCPH model number."
-  	#endif
+	  !defined(SCPH_1000)
+    	#error "Console not selected! Please uncomment #define with SCPH model number."
+	#elif !(defined(UC_ALL) ^ defined(PAL_FAT) ^ defined(SCPH_103) ^ \
+	  defined(SCPH_102) ^ defined(SCPH_100) ^ defined(SCPH_7000_9000) ^ \
+	  defined(SCPH_5500) ^ defined(SCPH_3500_5000) ^ defined(SCPH_3000) ^ \
+	  defined(SCPH_1000))
+    	#error "May be selected only one console! Please check #define with SCPH model number."
+	#endif
  
 	#ifndef AUTOREGION
 	 const char region[3] = {'e', 'a', 'i'};
