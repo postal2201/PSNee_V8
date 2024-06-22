@@ -1,13 +1,15 @@
-# PSNee V8
+# PSNee V8.1
 
-The first stealth modchip supporting unlocking BIOS of Japanese versions Sony PlayStation 1
+The first stealth modchip supporting unlocking BIOS of Japanese versions Sony PlayStation 1, and disabling the modchip itself.
 
 ![Logo](images/PSNee_V8_logo.png)
 Developed by **brill** & **postal2201**, based on PSNee V7 open source project.  
 - http://www.emu-land.net/forum/index.php/topic,85934.0.html
 
+The MOD_SWITCH feature added by **Victini378** and designed in cooperation with **SunAlphiusWu**.
+
 ## Supported platforms
-PsNee V8 supports the following MCU's:  
+PsNee V8.1 supports the following MCU's:  
 - ATmega328(A/P/PA) @16Mhz  
 - ATmega168(A/P/PA) @16Mhz  
 
@@ -28,7 +30,7 @@ Example of correct setting for ATmega328P:\
 
 ![ArduinoIDE](images/example.png)
 
-After that select the type console - uncoment define in file project(*.ino)
+After that select the type console - uncomment define in file project(*.ino)
 
 ![Console](images/console.png)
 
